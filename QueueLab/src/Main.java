@@ -1,3 +1,4 @@
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
@@ -18,7 +19,7 @@ public class Main {
 		
 		int a = input.nextInt();
 		int b = input.nextInt();
-		boolean was[] = new boolean[10000001];
+		Set<Integer> used = new TreeSet<>();
 		Queue<Pair> result = new LinkedList<>();
 		result.add(new Pair(a, 0));
 		while(!result.isEmpty()){
@@ -27,22 +28,22 @@ public class Main {
 				System.out.println(current.moves);
 				break;
 			}
-			if(!was[current.number+1]){
-				was[current.number+1] = true;
+			if(!used.contains(current.number + 1) ){
+				used.add(current.number + 1);
 				result.add(new Pair(current.number + 1, current.moves + 1));
 			}
 				
-			if(!was[current.number-1]){
-				was[current.number-1] = true;
+			if(!used.contains(current.number - 1)){
+				used.add(current.number - 1);
 				result.add(new Pair(current.number - 1, current.moves + 1));
 			}
-			if(!was[current.number*3]){
-				was[current.number*3] = true;
+			if(!used.contains(current.number * 3)){
+				used.add(current.number * 3);
 				result.add(new Pair(current.number * 3, current.moves + 1));
 			}
-			if(!was[current.number/3]){
-				was[current.number/3] = true;
-				result.add(new Pair(current.number /3, current.moves + 1));
+			if(!used.contains(current.number / 3)){
+				used.add(current.number / 3 );
+				result.add(new Pair(current.number / 3, current.moves + 1));
 			}
 			
 		}
