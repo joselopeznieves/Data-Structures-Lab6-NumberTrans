@@ -12,6 +12,9 @@ public class Main {
 			number = a;
 			moves = b;
 		}
+		public String toString(){
+			return "{ " + number + ", " + moves + "}";
+		}
 	}
 	public static void main(String[] args) {
 		
@@ -56,8 +59,6 @@ public class Main {
 				}
 				
 			}
-			
-			
 		}
 		
 		input.close();
