@@ -22,29 +22,41 @@ public class Main {
 		Set<Integer> used = new TreeSet<>();
 		Queue<Pair> result = new LinkedList<>();
 		result.add(new Pair(a, 0));
+		used.add(a);
 		while(!result.isEmpty()){
 			Pair current = result.poll();
 			if (current.number == b){
 				System.out.println(current.moves);
 				break;
 			}
-			if(!used.contains(current.number + 1) ){
-				used.add(current.number + 1);
-				result.add(new Pair(current.number + 1, current.moves + 1));
+			
+			if(current.number + 1 == b || current.number - 1 == b || current.number * 3 == b || current.number / 3 == b) {
+				System.out.println(current.moves + 1);
+				break;
 			}
 				
-			if(!used.contains(current.number - 1)){
-				used.add(current.number - 1);
-				result.add(new Pair(current.number - 1, current.moves + 1));
+			
+			if(current.number >= 0) {
+				if(!used.contains(current.number + 1)){
+					used.add(current.number + 1);
+					result.add(new Pair(current.number + 1, current.moves + 1));
+				}
+					
+				if(!used.contains(current.number - 1)){
+					used.add(current.number - 1);
+					result.add(new Pair(current.number - 1, current.moves + 1));
+				}
+				if(!used.contains(current.number * 3)){
+					used.add(current.number * 3);
+					result.add(new Pair(current.number * 3, current.moves + 1));
+				}
+				if(!used.contains(current.number / 3)){
+					used.add(current.number / 3 );
+					result.add(new Pair(current.number / 3, current.moves + 1));
+				}
+				
 			}
-			if(!used.contains(current.number * 3)){
-				used.add(current.number * 3);
-				result.add(new Pair(current.number * 3, current.moves + 1));
-			}
-			if(!used.contains(current.number / 3)){
-				used.add(current.number / 3 );
-				result.add(new Pair(current.number / 3, current.moves + 1));
-			}
+			
 			
 		}
 		
